@@ -75,7 +75,7 @@ impl<A: Float + Zero + One, T, U: AsRef<[A]>> KdTree<A, T, U> {
         if num == 0 {
             return Ok(vec![]);
         }
-        let mut pending = BinaryHeap::new();
+        let mut pending = BinaryHeap::with_capacity((self.size as f32).sqrt() as usize);
         let mut evaluated = BinaryHeap::<HeapElement<A, &T>>::new();
         pending.push(HeapElement {
             distance: A::zero(),
